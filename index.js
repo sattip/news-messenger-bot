@@ -1,5 +1,6 @@
 const Bot = require("messenger-bot")
 const http = require("http")
+var config = require('config');
 
 
 const NODE_ENV = process.env.NODE_ENV || "development"
@@ -15,8 +16,8 @@ var bot = new Bot({
     app_secret: ENV["FACEBOOK_APP_SECRET"]
 })
 
-const PORT = process.env.PORT || 9999
-const HOST = process.env.HOST || "0.0.0.0"
+const PORT = process.env.PORT || config.get('WebServer.port')
+const HOST = process.env.HOST || config.get('WebServer.host')
 
 require("./bot_modules/index")(bot)
 
